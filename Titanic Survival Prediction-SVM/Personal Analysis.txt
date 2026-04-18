@@ -1,0 +1,14 @@
+The strongest predictors of survival in order of importance were: 
+1.Gender (women survived far more than men) 
+
+2.Ticket class (higher class meant dramatically better chances), and fare paid (even within the
+same class, those who paid more were slightly better positioned).
+
+3.Age mattered mainly for children —
+young children had better survival odds. 
+
+4.Family size showed a nuanced pattern: being
+completely alone was a disadvantage in lower classes, but travelling with a moderately sized family (2–4
+people) provided some benefit. Very large families fared poorly
+
+ps-Please use the excelsheet for reference.
