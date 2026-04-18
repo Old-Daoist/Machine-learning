@@ -40,7 +40,7 @@ RED    = '#FF5252'
 AMBER  = '#FFB300'
 GRAY   = '#90A4AE'
 
-DATA_PATH = "/home/claude/titanic.csv"
+DATA_PATH = "titanic.csv"
 
 print("=" * 55)
 print("  TITANIC SVM CLASSIFICATION")
