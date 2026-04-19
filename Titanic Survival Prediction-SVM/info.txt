@@ -8,5 +8,5 @@
 | parch     | # of parents / children aboard the Titanic               |                                                |
 | ticket    | Ticket number                                            |                                                |
 | fare      | Passenger fare                                           |                                                |
-| cabin     | Cabin number                                             |                                                |
+| cabin     | Cabin number                                             | int                                              |
 | embarked  | Port of Embarkation                                      | C = Cherbourg, Q = Queenstown, S = Southampton |
