@@ -4,8 +4,8 @@ from sklearn.linear_model import LogisticRegression
 
 # Dataset
 data = {
-    "StudyHours": [1, 2, 3, 4, 5, 6, 7],
-    "Result": [0, 0, 0, 1, 1, 1, 1]
+    "StudyHours": [1, 2, 3, 4, 5, 6, 7,8],
+    "Result": [0, 0, 0, 1, 1, 1, 1,2]
 }
 
 df = pd.DataFrame(data)
