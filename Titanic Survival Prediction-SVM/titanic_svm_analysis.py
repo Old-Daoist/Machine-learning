@@ -296,7 +296,7 @@ recall_val     = tp / (tp + fn)
 fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 fig.subplots_adjust(left=0.07, right=0.97, top=0.87, bottom=0.12, wspace=0.40)
 
-disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, vn
                                display_labels=['Not Survived', 'Survived'])
 disp.plot(ax=axes[0], cmap='Blues', colorbar=False)
 axes[0].set_title(
