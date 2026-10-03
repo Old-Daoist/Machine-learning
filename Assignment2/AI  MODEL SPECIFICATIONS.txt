@@ -1,0 +1,9 @@
+AI / MODEL SPECIFICATIONS:
+
+Model: Llama 3.2
+Model Provider/Runtime: Ollama.
+Model Type: Large Language Model (LLM).
+Running Mode: Locally.
+Framework: LangChain.
+Context: Conversation history is provided during the current session.
+Output: Text response.

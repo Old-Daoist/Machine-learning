@@ -1,0 +1,22 @@
+LLM CHAIN EXPLANATION:
+
+The chatbot uses LangChain to connect the prompt, conversation history, Llama 3.2 model, and output parser.
+
+ChatPromptTemplate creates the prompt structure using system instructions, previous conversation history, and the current user question so this basically defines how your AI behaves, changing it can directly affect how the AI interact with the user.
+
+MessagesPlaceholder inserts the previous conversation into the prompt. The conversation is stored using Streamlit session state and converted into HumanMessage and AIMessage objects which helps to maintain chat history and conversation relevance and will help the AI in remembering past conversation. (Disclaimer!!!! Only in one session, if the application is terminated, all past data is lost since its not stored)
+
+
+The chain is created as:
+
+chain = prompt | llm | StrOutputParser() // Check code line 34
+
+ChatOllama sends the formatted prompt to the locally running Llama 3.2 model through Ollama backend server. 
+
+StrOutputParser converts the model output into a simple string that can be displayed in Streamlit which is important so that the chatbot extracts text from llama3.2 messages and display only the texts.
+
+The chatbot uses chain.stream() to generate the response progressively. The conversation is stored after each response, allowing the previous messages to be passed to the chain when the user asks the next question.
+
+Overall flow:
+
+User Question → Prompt + Conversation History → Llama 3.2 → StrOutputParser → Streamlit Response
