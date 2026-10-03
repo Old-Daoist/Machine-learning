@@ -1,0 +1,3 @@
+Model Used: Llama 3.2 (llama3.2:latest)
+Platform: Ollama
+Running locally through Ollama+ Windows Powershell.

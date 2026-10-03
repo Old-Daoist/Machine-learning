@@ -1,0 +1,27 @@
+My conclusion:
+The three experiments demonstrated that the context provided to an LLM significantly affects how it interprets an ambiguous question. 
+
+--------------------------------------------------------------------------------------------------------
+In Experiment 1, 
+Where little or no context was provided, the model gave multiple possible meanings of “crossover point.” 
+(Please check experiment1result.txt).
+
+The result : Model gave multiple possible meanings of “crossover point.”
+--------------------------------------------------------------------------------------------------------
+
+In Experiment 2, 
+The Genetic Algorithm context caused the model to interpret the term in relation to genetic algorithms based on the provided context file, provided with simple instructions, and prompt. (please check experiment2result.txt)
+
+The result : Recognized that “crossover point” was not actually defined and explained the meaning of “crossover” from the context.
+----------------------------------------------------------------------------------------------------------
+In Experiment 3, 
+The physics and engineering context caused the model to interpret “crossover point” as the intersection of two or more curves or system responses due to the new provided contexts, prompt and instruction even though the question remained the same.
+(Please check experiment3result.txt)
+
+The result : Model interpreted “crossover point” as the intersection of curves/system responses based on the provided context.
+
+----------------------------------------------------------------------------------------------------------
+
+These experiments show that the same question can produce different answers depending on the context given to the model. Providing more specific and relevant context reduced ambiguity and guided the model toward the intended meaning. Therefore, context engineering is useful for controlling and improving how an LLM understands a question.
+
+Note :- However, even if the context and prompt remains the same the output isn't the same with difference in wording, which is expected and its acceptable because the main core explanations stays relevant and present throughout.(please check experiment 3 output for the output example)
