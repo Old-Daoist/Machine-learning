@@ -1,0 +1,6 @@
+The chatbot was successfully tested with different questions and was able to maintain the conversation during the session. 
+
+The prompt was designed to make the AI identify itself as an AI rather than a human. During testing, when asked whether it would choose a gender if given a choice, it did not choose one and continued to identify itself as an AI. This showed that the chatbot followed the behavior defined in the prompt.
+
+However more testing is required to see if the AI and overcome its prompt design to complete the task. 
+On a good note it works fairly simple and does what its told and is very "literal" and follows my command/question rigidly.

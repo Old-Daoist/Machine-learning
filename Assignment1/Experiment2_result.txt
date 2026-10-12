@@ -1,0 +1,14 @@
+PS D:\Ollama\Models> $prompt = Get-Content "D:\Ollama\Experiment2.txt" -Raw
+PS D:\Ollama\Models> ollama run llama3.2 $prompt
+There is no explicit mention of a "crossover point" in the given context.
+
+PS D:\Ollama\Models> ollama run llama3.2 $prompt
+A crossover point refers to the point in the genome where genetic material from two parent solutions is exchanged to create a new solution.
+
+PS D:\Ollama\Models> ollama run llama3.2 $prompt
+There is no mention of a "crossover point" in the given context. The term "crossover" in this context refers to a genetic operator used in evolution algorithms, not a physical location or a point in space.
+
+PS D:\Ollama\Models> ollama run llama3.2 $prompt
+There is no mention of a "crossover point" in the given context. The context only mentions "crossover" (also called recombination) as a genetic operator used to generate new solutions.
+
+PS D:\Ollama\Models>

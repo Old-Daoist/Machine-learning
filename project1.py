@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 # Dataset
 data = {
     "StudyHours": [1, 2, 3, 4, 5, 6, 7],
-    "Result": [0, 0, 0, 1, 1, 1, 1]
+    "Result": [0, 0, 0, 1, 1, 1, 1,1]
 }
 
 df = pd.DataFrame(data)
