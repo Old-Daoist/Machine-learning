@@ -1,0 +1,66 @@
+Assignment 3 — Automatic Numerical Analysis
+================================================
+Evaluation point: x = 1
+Step sizes: h = 10^-1 through 10^-16
+
+Method formulas:
+  D(h) = [f(x+h) - f(x-h)] / (2h)
+  R(h) = [4D(h/2) - D(h)] / 3
+
+Q1. Does Richardson always give a smaller error than Central Difference?
+  exp(x): Richardson error is smaller for 7/16 tested h values.
+  sin(x): Richardson error is smaller for 5/16 tested h values.
+  cos(x): Richardson error is smaller for 6/16 tested h values.
+  x^3 - 2x + 1: Richardson error is smaller for 5/16 tested h values.
+  Conclusion: No. Richardson is not guaranteed to be smaller at every h, especially near machine-precision/round-off-dominated values.
+
+Q2. By approximately what factor does the error decrease when h is reduced by 10?
+  Central Difference:
+    exp(x): representative factors near convergence = 100, 100, 100, 77.3 (theory ≈ 100).
+    sin(x): representative factors near convergence = 100, 100, 100, 80.8 (theory ≈ 100).
+    cos(x): representative factors near convergence = 100, 100, 100, 129 (theory ≈ 100).
+    x^3 - 2x + 1: representative factors near convergence = 100, 100, 100, 105 (theory ≈ 100).
+  Richardson:
+    exp(x): representative factors near convergence = 9.99e+03, 141, 0.47, 0.442 (theory ≈ 10000).
+    sin(x): representative factors near convergence = 9.99e+03, 318, 1.22, 0.399 (theory ≈ 10000).
+    cos(x): representative factors near convergence = 9.99e+03, 155, 1.03, 0.443 (theory ≈ 10000).
+    x^3 - 2x + 1: representative factors near convergence = 1.56, 1, 1, 1 (theory ≈ 10000).
+  Conclusion: actual factors vary with h; near the truncation-error region they approach the theoretical factors, then break down as round-off dominates.
+
+Q3. Does Richardson continue to improve as h becomes very small?
+  exp(x): no; minimum Richardson error occurs at h=1e-03, while at h=1e-16 the error is 5.665e-07. Best error is 4.023e-13.
+  sin(x): no; minimum Richardson error occurs at h=1e-03, while at h=1e-16 the error is 1.125e-07. Best error is 3.542e-14.
+  cos(x): no; minimum Richardson error occurs at h=1e-03, while at h=1e-16 the error is 1.753e-07. Best error is 1.134e-13.
+  x^3 - 2x + 1: no; minimum Richardson error occurs at h=1e-01, while at h=1e-16 the error is 1.998e-15. Best error is 1.998e-15.
+
+Q4. Does the log-log slope support the theoretical prediction?
+  exp(x) — Central Difference: fitted/averaged observed slope ≈ 1.972 over h=1e-02 to 1e-05 (theory 2).
+  exp(x) — Richardson: fitted/averaged observed slope ≈ 4.000 over h=1e-02 to 1e-02 (theory 4).
+  sin(x) — Central Difference: fitted/averaged observed slope ≈ 1.977 over h=1e-02 to 1e-05 (theory 2).
+  sin(x) — Richardson: fitted/averaged observed slope ≈ 4.000 over h=1e-02 to 1e-02 (theory 4).
+  cos(x) — Central Difference: fitted/averaged observed slope ≈ 2.028 over h=1e-02 to 1e-05 (theory 2).
+  cos(x) — Richardson: fitted/averaged observed slope ≈ 4.000 over h=1e-02 to 1e-02 (theory 4).
+  x^3 - 2x + 1 — Central Difference: fitted/averaged observed slope ≈ 2.005 over h=1e-02 to 1e-05 (theory 2).
+  x^3 - 2x + 1 — Richardson: fitted/averaged observed slope ≈ nan over h=No reliable pair (theory 4).
+  Conclusion: the slopes should be judged from the identified truncation-error region, not the round-off tail.
+
+Q5. Does Richardson achieve the expected O(h^4) behavior?
+  exp(x): reliable observed slope(s) = 1e-02->4.000 (target p=4).
+  sin(x): reliable observed slope(s) = 1e-02->4.000 (target p=4).
+  cos(x): reliable observed slope(s) = 1e-02->4.000 (target p=4).
+  x^3 - 2x + 1: no reliable p≈4 slope pair was available before round-off dominated the Richardson error.
+  Conclusion: the e^x, sin(x), and cos(x) data contain a clear p≈4 Richardson step from h=1e-1 to h=1e-2. The smaller-h Richardson slopes then deteriorate as round-off becomes important. For x^3-2x+1, Richardson is already at floating-point-level error at h=1e-1, so a clean O(h^4) regime cannot be resolved numerically in double precision.
+
+Q6. What role does floating-point round-off error play?
+  The central-difference numerator subtracts two nearby function values. For very small h, subtractive cancellation removes significant digits before division by 2h.
+  Consequently, decreasing h eventually stops reducing total error. The error curves reach minima and then flatten, rise, or become irregular.
+  Richardson combines several finite-precision differences, so its higher-order truncation error can be much smaller while round-off/cancellation eventually limits the result.
+
+Best h summary:
+  exp(x): D best h=1e-05, error=5.859e-11; R best h=1e-03, error=4.023e-13.
+  sin(x): D best h=1e-05, error=1.114e-11; R best h=1e-03, error=3.542e-14.
+  cos(x): D best h=1e-05, error=1.086e-11; R best h=1e-03, error=1.134e-13.
+  x^3 - 2x + 1: D best h=1e-06, error=8.227e-11; R best h=1e-01, error=1.998e-15.
+
+Important interpretation:
+  The theoretical O(h^2) and O(h^4) orders describe the truncation-error regime. They do not imply that arbitrarily small h always improves a floating-point computation.
