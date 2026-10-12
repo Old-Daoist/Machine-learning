@@ -1,70 +1,46 @@
+
 import numpy as np
 
-
 class PowerMethod:
-    def __init__(self, matrix, tolerance=1e-10,
-                 max_iterations=1000):
 
-        self.A = np.array(matrix, dtype=float)
-        self.tolerance = tolerance
-        self.max_iterations = max_iterations
-
-        if self.A.ndim != 2 or self.A.shape[0] != self.A.shape[1]:
-            raise ValueError("Matrix must be square.")
-
-        if self.A.shape[0] == 0:
-            raise ValueError("Matrix must not be empty.")
-
-        self.eigenvalue = None
-        self.eigenvector = None
-        self.iterations = 0
-        self.converged = False
+    def __init__(self, A):
+        self.A = np.array(A, dtype=float)
 
     def solve(self):
-        n = self.A.shape[0]
+        n = len(self.A)
 
         # Initial vector
         x = np.ones(n)
-        x = x / np.linalg.norm(x)
 
-        previous = None
+        for i in range(n):
+            x[i] = x[i] / np.linalg.norm(x)
 
-        for k in range(1, self.max_iterations + 1):
+        for i in range(100):
 
             # Multiply matrix by vector
             y = self.A @ x
 
-            # Normalize the new vector
-            norm_y = np.linalg.norm(y)
+            # Normalize the vector
+            y = y / np.linalg.norm(y)
 
-            if norm_y == 0:
-                raise ValueError("Cannot continue iteration.")
+            # Calculate eigenvalue
+            eigenvalue = np.dot(y, self.A @ y)
 
-            x = y / norm_y
+            # Check if the result is stable
+            if np.linalg.norm(y - x) < 0.000001:
+                x = y
+                break
 
-            # Calculate eigenvalue estimate
-            Ax = self.A @ x
-            eigenvalue = np.dot(x, Ax) / np.dot(x, x)
+            x = y
 
-            self.eigenvalue = eigenvalue
-            self.eigenvector = x.copy()
-            self.iterations = k
-
-            # Check convergence
-            if previous is not None:
-                if abs(eigenvalue - previous) < self.tolerance:
-                    self.converged = True
-                    break
-
-            previous = eigenvalue
-
-        return self.eigenvalue, self.eigenvector
+        return eigenvalue, x
 
     def print_results(self):
-        print("Dominant Eigenvalue:", self.eigenvalue)
-        print("Eigenvector:", self.eigenvector)
-        print("Iterations:", self.iterations)
-        print("Converged:", self.converged)
+        eigenvalue, eigenvector = self.solve()
+
+        print("Dominant Eigenvalue:", eigenvalue)
+        print("Eigenvector:")
+        print(eigenvector)
 
 
 # Main program
@@ -74,6 +50,5 @@ A = [
     [0, 1, 4]
 ]
 
-pm = PowerMethod(A)
-pm.solve()
-pm.print_results()
+p = PowerMethod(A)
+p.print_results()
